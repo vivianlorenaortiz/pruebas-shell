@@ -1,5 +1,5 @@
 #include "shell.h"
-
+#include <stdio.h>
 /**
  * read_line - Reads the line input.
  * Return: The address of the first input character
@@ -10,7 +10,11 @@ char *read_line(void)
 {
   char *lineptr = NULL;
   ssize_t bufsize = 0; // Getline reallocates the buffer for us.
-  getline(&lineptr, &bufsize, stdin);
+  if (getline(&lineptr, &bufsize, stdin) == -1)
+  {
+	  free(lineptr);
+	  exit(-1);
+  }
   return (lineptr);
 }
 
@@ -34,7 +38,7 @@ char **parse_line(char *lineptr)
       perror("Allocation Error!"); /* Changed to perror to assign error accordingly */
       return (NULL); /* Thinking on changing return to EXIT_FAILURE */
     }
-  len = strtok(lineptr, DELIMITERS_PARSE);
+  len = strtok(lineptr, DELIMITER);
   while (len != NULL)
     {
       tokens[i] = malloc(sizeof(char) * (strlen(len) + 1));
@@ -45,7 +49,7 @@ char **parse_line(char *lineptr)
 	}
       for(j = 0; j < strlen(len); j++)
 	tokens[i][j] = len[j];
-      len = strtok(NULL, DELIMITERS_PARSE);
+      len = strtok(NULL, DELIMITER);
       i++;
     }
   return (tokens);

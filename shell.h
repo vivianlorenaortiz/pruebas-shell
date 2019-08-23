@@ -12,13 +12,16 @@
 #include <stddef.h>
 #define BUFFER_SIZE 1024
 #define PROMPT "$cisfun#"
-#define DELIMITERS_PARSE " \t\n\r\a"
+#define DELIMITER " \t\r\n\a"
 /* Shell Basic Interpretation */
-void loop_cmd(void);
+int _exec(char **args);
+int loop_cmd(void);
 int my_getline(char *lineptr, int buf_size);
 char *read_line(void);
 char **parse_line(char *lineptr);
 /* String Manipulation */
 void print_str(char *str);
 int _strlen(char *s);
+void _puts(char *str);
+int _putchar(char c);
 #endif

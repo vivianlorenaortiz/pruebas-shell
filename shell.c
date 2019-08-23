@@ -1,29 +1,28 @@
 #include "shell.h"
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 /**
  * loop_cmd - Interprets the command line.
  * Return: Nothing
 **/
-
-void loop_cmd(void)
+int loop_cmd(void)
 {
   char *line;
   char **args;
-  int status;
 
-do{
-	printf("$ ");
-	line = read_line();
-	args = parse_line(line);
-	status = execve(args[0], args, NULL);
-
-	free(line);
-	free(args);
-}while (status);
+  while (1)
+  {
+	  _puts("$ ");
+	  line = read_line();
+	  args = parse_line(line);
+	  _exec(args);
+	  free(line);
+	  free(args);
+  }
+  return (0);
 }
-
 /**
  * main - Calls loop function and if succeeds it returns an EXIT_SUCCESS
  * @ac: Argument Count
