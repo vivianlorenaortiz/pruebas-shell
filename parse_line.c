@@ -28,11 +28,12 @@ char *read_line(void)
 char **parse_line(char *lineptr)
 {
 	char **tokens = NULL;
-	char *len;
+	char *len = NULL;
         int i = 0, size = 64; /* Changed data type from size_t to int *//* Changed size from 3 to 64 */
 	unsigned int j;
 	if (lineptr == NULL)
 		return (NULL);
+	
 	tokens = malloc(sizeof(char*) *size); /* Changed size and char with asterisk.*/
 	if (tokens == NULL)
 	{

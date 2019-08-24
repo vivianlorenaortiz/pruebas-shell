@@ -9,8 +9,8 @@
 **/
 int loop_cmd(void)
 {
-  char *line;
-  char **args;
+  char *line = NULL;
+  char **args = NULL;
 
   while (1)
   {

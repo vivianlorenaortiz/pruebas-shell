@@ -7,6 +7,7 @@
  */
 int _exec( char **args)
 {
+	int i;
 	pid_t pid;
 	int status;
 
@@ -20,6 +21,11 @@ int _exec( char **args)
 	else if (pid > 0)
 	{
 		wait(&status);
+		for (i = 0; i < 64; i++)
+		{
+			free(args[i]);
+		}
+	
 	}
 	else
 		perror("Error. ");
