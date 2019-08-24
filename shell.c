@@ -31,6 +31,9 @@ int loop_cmd(void)
 **/
 int main(int ac, char **av)
 {
+	(void)ac;
+	(void)av;
+
 	loop_cmd();
 	return EXIT_SUCCESS;
 }
